@@ -28,4 +28,10 @@ public class MappingController {
         log.info("mappingPath userId = {}", data);
         return "ok";
     }
+
+    @GetMapping(value = "/mapping/users/{userId}/orders/{orderId}")
+    public String mappingPath(@PathVariable("userId") String data, @PathVariable Long orderId){
+        log.info("mappingPath userId = {}, orderId = {}", data, orderId);
+        return "ok";
+    }
 }
