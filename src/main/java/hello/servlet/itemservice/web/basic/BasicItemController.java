@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import java.util.List;
 
 @Controller
@@ -25,23 +26,30 @@ public class BasicItemController {
         return "basic/items";
     }
 
+    //    @GetMapping("/{itemId}")
+//    public String item(@PathVariable long itemId, Model model) {
+//        Item item = itemRepository.findById(itemId);
+//        model.addAttribute("item", item);
+//        return "basic/item";
+//    }
     @GetMapping("/{itemId}")
-    public String item(@PathVariable long itemId, Model model) {
+    public String item(@PathVariable("itemId") long itemId, Model model) {
         Item item = itemRepository.findById(itemId);
         model.addAttribute("item", item);
         return "basic/item";
     }
+
 
     @GetMapping("/add")
     public String addForm() {
         return "basic/addForm";
     }
 
-//    @PostMapping("/add")
+    //    @PostMapping("/add")
     public String addItemV1(@RequestParam String itemName,
-                       @RequestParam int price,
-                       @RequestParam Integer quantity,
-                       Model model) {
+                            @RequestParam int price,
+                            @RequestParam Integer quantity,
+                            Model model) {
 
         Item item = new Item();
         item.setItemName(itemName);
@@ -55,7 +63,7 @@ public class BasicItemController {
         return "basic/item";
     }
 
-//    @PostMapping("/add")
+    //    @PostMapping("/add")
     public String addItemV2(@ModelAttribute("item") Item item, Model model) {
 
         itemRepository.save(item);
@@ -64,19 +72,19 @@ public class BasicItemController {
         return "basic/item";
     }
 
-//    @PostMapping("/add")
+    //    @PostMapping("/add")
     public String addItemV3(@ModelAttribute Item item) {
         itemRepository.save(item);
         return "basic/item";
     }
 
-//    @PostMapping("/add")
+    //    @PostMapping("/add")
     public String addItemV4(Item item) {
         itemRepository.save(item);
         return "basic/item";
     }
 
-//    @PostMapping("/add")
+    //    @PostMapping("/add")
     public String addItemV5(Item item) {
         itemRepository.save(item);
         return "redirect:/basic/items/" + item.getId();

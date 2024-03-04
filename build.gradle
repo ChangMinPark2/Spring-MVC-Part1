@@ -11,6 +11,11 @@ version = '0.0.1-SNAPSHOT'
 java {
 	sourceCompatibility = '17'
 }
+compileJava {
+	options.compilerArgs += ['-parameters']
+	sourceCompatibility = '17' // 사용 중인 자바 버전으로 변경해주세요
+	targetCompatibility = '17' // 사용 중인 자바 버전으로 변경해주세요
+}
 
 configurations {
 	compileOnly {
